@@ -26,10 +26,10 @@ Til sidst er forarbejdet lavet til ikke at lukke når den modtager CONNECT# og S
 **Mathias - Online**
 Har lavet en string, hvor der bliver tilføjet navne i et loop af aktive klienter (online brugere) "ONLINE#navn1,navn2". Efter denne string er bygget, sendes den til alle de ovennævne aktive klienter via message metoden.
 
-Dag 2 (Tirsdag d. 09-03-2021)
+**Dag 2 (Tirsdag d. 09-03-2021)**
 Efter konsultation med Lars har vi været nødt til at starte "forfra" uden brug af git, da det var mere til forvirring end gavn. Vi har brugt dagen på at lave videre på opgaven, men har svært ved at få det til at fungere. Det har været fælleskode, så ikke noget individuelt arbejde at notere i dag. 
 
-Dag 3 (Onsdag d. 10-03-2021)
+**Dag 3 (Onsdag d. 10-03-2021)**
 Lars har hjulpet os med at lægge en ny "start kode" ud, som vi har arbejdet videre på. Vi har nu et chat program med alle funktioner der virker lokalt. I morgen vil vi sørge for at det virker med Dropletten og forhåbentlig kalde det en succes. 
 
-Dag 4 (Torsdag d. 11-03-2021)
+**Dag 4 (Torsdag d. 11-03-2021)**
