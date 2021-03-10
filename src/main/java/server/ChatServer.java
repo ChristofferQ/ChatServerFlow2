@@ -32,20 +32,15 @@ class ClientHandler implements Runnable{
 
     private boolean handleCommand(String msg, PrintWriter pw,Scanner scanner) throws IOException
     {
-        //System.out.println("Command: "+msg);
         String[] parts = msg.split("#");
-        if (parts.length == 1) {
-            chatServer.removeClientFromList(userName, this);
-            if (parts[0].equals("CLOSE")) {
-                return false;
-            }
-            throw new IllegalArgumentException("Sent request does not obey the protocol");
-        } else if (parts.length == 3) {
+        if (parts.length >= 3)
+        {
             //Only one command to handle here, since Connect is taken care of in it's own method
             String token = parts[0];
             String receivers = parts[1];
             String message = parts[2];
-            switch (token) {
+            switch (token)
+            {
                 case "SEND":
                     //TODO
                     if (receivers.equals("*"))
@@ -57,12 +52,22 @@ class ClientHandler implements Runnable{
 
                     } else
                     {
-                        chatServer.sendToUser(message,userName,receivers);
+                        chatServer.sendToUser(message, userName, receivers);
                     }
                     break;
                 default:
                     throw new IllegalArgumentException("Sent request does not obey protocol");
             }
+        } else
+        {
+            chatServer.removeClientFromList(userName, this);
+            chatServer.sendToAll("Server", userName + " has logged off");
+            if (parts[0].equals("CLOSE"))
+            {
+                pw.println("Thanks for playing");
+                return false;
+            } else
+                throw new IllegalArgumentException("Sent request does not obey the protocol");
         }
         return true;
     }
