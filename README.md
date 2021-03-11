@@ -33,3 +33,5 @@ Efter konsultation med Lars har vi været nødt til at starte "forfra" uden brug
 Lars har hjulpet os med at lægge en ny "start kode" ud, som vi har arbejdet videre på. Vi har nu et chat program med alle funktioner der virker lokalt. I morgen vil vi sørge for at det virker med Dropletten og forhåbentlig kalde det en succes. 
 
 **Dag 4 (Torsdag d. 11-03-2021)**
+Vi havde problemer i går med at få serveren til at fungere, men med et hurtigt fix fra Lars er den nu oppe at køre og vi har testet, at den fungererer korrekt (altså efter vores kode). Vi har gennemgået koden fælles for at sikre en fælles forståelse og diskuteret eventuelle fremtidige ændringer. 
+Vi mødes i morgen til en dejlig dag med Lars. 
