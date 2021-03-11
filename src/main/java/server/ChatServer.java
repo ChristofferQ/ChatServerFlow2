@@ -42,14 +42,15 @@ class ClientHandler implements Runnable{
             switch (token)
             {
                 case "SEND":
-                    //TODO
+                    // Handles send to all users
                     if (receivers.equals("*"))
                     {
                         chatServer.sendToAll(userName, message);
+                    //Handles send to multiple users
                     } else if (receivers.contains(","))
                     {
                         chatServer.sendToUsers(message, userName, receivers);
-
+                    //Handles send to one user
                     } else
                     {
                         chatServer.sendToUser(message, userName, receivers);
@@ -60,6 +61,7 @@ class ClientHandler implements Runnable{
             }
         } else
         {
+            //Handles what happens when a user is logged off by sending a message to that user and informing the remaining online users
             chatServer.removeClientFromList(userName, this);
             chatServer.sendToAll("Server", userName + " has logged off");
             if (parts[0].equals("CLOSE"))
@@ -75,12 +77,14 @@ class ClientHandler implements Runnable{
     private boolean handleConnectCommand(String msg, PrintWriter pw,Scanner scanner)
     {
         String[] parts = msg.split("#");
+        //Disconnects the user if CONNECT# has not been used (ie. protocol has not been followed)
         if (parts.length != 2 || !parts[0].equals("CONNECT"))
         {
             closeStatus = 1;
             throw new IllegalArgumentException("Sent request does not obey protocol");
         }
         userName = parts[1];
+        //If CONNECT# has been used correctly the user is added to the online list and prints an online status
         if (ChatServer.doesUserExist(userName))
         {
             chatServer.addClientToList(userName, this);
@@ -165,31 +169,18 @@ public class ChatServer
 
     public void removeClientFromList(String user, ClientHandler ch)
     {
-        //TODO  Complete this
         allClientHandlers.remove(user, ch);
         sendOnlineMessageToAll();
     }
 
-//    public void sendOnlineMessageToAll(){
-//        Set<String> allUserNames = allClientHandlers.keySet();
-//        final String usersCommaSeparated = allUserNames.stream().collect(Collectors.joining(","));
-//        allClientHandlers.values().forEach((clientHandler -> {
-//            clientHandler.sendToThisClient("ONLINE#"+usersCommaSeparated);
-//        }));
-//    }
-
-    //If you find this CLUMSY replace with the stream-version above
     public void sendOnlineMessageToAll()
     {
         Set<String> allUserNames = allClientHandlers.keySet();
         String onlineString = "ONLINE#";
-        //Streams and join will make the following a lot simpler :-)
         for (String user : allUserNames)
         {
             onlineString += user + ",";
         }
-        ;
-        //Remove the last comma
         final String onlineStringWithUsers = onlineString.substring(0, onlineString.length() - 1);
         allClientHandlers.values().forEach((clientHandler ->
         {
